@@ -38,16 +38,6 @@ def get_battery_status():
 	fd.close()
 	print(status)
 
-def get_ip():
-	command = 'ifconfig wlp2s0 | grep -w inet | awk \'{print $2}\''
-#	subprocess.Popen(['ifconfig', 'wlp2s0 ', '|', 'grep', '-w', 'inet', '|', 'awk', '{print $2}'])
-#	subprocess.Popen(command)
-#	ps = subprocess.Popen(command,shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
-#	output = ps.communicate()[0]
-#	output = (output)
-	output = ((subprocess.check_output(command, shell=True)).decode('UTF-8')).replace('\n','')
-	print(output)
-
 def get_ssid():
 	command = 'iwgetid -r'
 	output = ((subprocess.check_output(command,shell=True).decode('UTF-8')).replace('\n',''))
@@ -60,7 +50,6 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--battery', action='store_true')
 	parser.add_argument('--battery_status', action='store_true')
-	parser.add_argument('--ip', action='store_true')
 	parser.add_argument('--ssid', action='store_true')
 	arguments = parser.parse_args()
 	
@@ -68,7 +57,5 @@ if __name__ == "__main__":
 		get_battery()
 	elif arguments.battery_status == True:
 		get_battery_status()
-	elif arguments.ip == True:
-		get_ip()
 	elif arguments.ssid == True:
 		get_ssid()
