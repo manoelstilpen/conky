@@ -1,0 +1,25 @@
+use_xft yes
+xftfont Terminus:size=8
+xftalpha 0.8
+update_interval 10
+# remove blinking
+double_buffer yes
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_type normal
+own_window_class conky-semi
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+background no
+
+TEXT
+${font AvantGardeLTMedium:bold:size=10}${color Tan1}Memory ${color slate grey}${hr 2}${font}
+${color}RAM Usage:    ${voffset 0}${memperc}%
+${font AvantGardeLTMedium:bold:size=10}${color Tan1}Internet ${color slate grey}${hr 2}${font}
+${color}SSID:         ${execpi 60 python ~/.conky-scripts/battery-progress.py --ssid}
+${color}Ip address:   ${execpi 60 python ~/.conky-scripts/battery-progress.py --ip}
+${color}Download:     ${downspeed wlp2s0}
+${font AvantGardeLTMedium:bold:size=10}${color Tan1}Battery ${color slate grey}${hr 2}${font}
+${color}Status:       ${execpi 60 python3 ~/.conky-scripts/battery-progress.py --battery_status}
+${color}${execpi 300 python3 ~/.conky-scripts/battery-progress.py --battery}
