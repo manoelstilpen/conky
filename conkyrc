@@ -1,25 +1,40 @@
+# Use Xft (anti-aliased font and stuff)
 use_xft yes
+
+# font configuration
 xftfont Terminus:size=8
 xftalpha 0.8
-update_interval 10
-# remove blinking
+
+# update every 10 seconds
+update_interval 5
+
+# eliminates flicker
 double_buffer yes
+
+# conky will run forever
 total_run_times 0
+
+# window configuration
 own_window yes
 own_window_transparent yes
 own_window_argb_visual yes
 own_window_type normal
 own_window_class conky-semi
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
-background no
+
+# run in background
+background yes
+
+alignment top_right
 
 TEXT
-${font AvantGardeLTMedium:bold:size=10}${color Tan1}Memory ${color slate grey}${hr 2}${font}
-${color}RAM Usage:    ${voffset 0}${memperc}%
+${font AvantGardeLTMedium:bold:size=10}${color Tan1}System ${color slate grey}${hr 2}${font}
+${color}CPU Usage:    ${voffset 0}${cpu cpu}%   ${cpubar}
+${color}RAM Usage:    ${voffset 0}${memperc}%   ${membar}
 ${font AvantGardeLTMedium:bold:size=10}${color Tan1}Internet ${color slate grey}${hr 2}${font}
-${color}SSID:         ${execpi 60 python ~/.conky-scripts/battery-progress.py --ssid}
-${color}Ip address:   ${execpi 60 python ~/.conky-scripts/battery-progress.py --ip}
+${color}SSID:         ${execpi 60 python ~/.conky-scripts/scripts.py --ssid}
+${color}Ip address:   ${addr wlp2s0}
 ${color}Download:     ${downspeed wlp2s0}
 ${font AvantGardeLTMedium:bold:size=10}${color Tan1}Battery ${color slate grey}${hr 2}${font}
-${color}Status:       ${execpi 60 python3 ~/.conky-scripts/battery-progress.py --battery_status}
-${color}${execpi 300 python3 ~/.conky-scripts/battery-progress.py --battery}
+${color}Status:       ${execpi 60 python3 ~/.conky-scripts/scripts.py --battery_status}
+${color}${execpi 300 python3 ~/.conky-scripts/scripts.py --battery}
