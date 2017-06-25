@@ -21,7 +21,7 @@ def get_battery():
 	# print(percentage)
 	status = status.replace('\n', '')
 	if 5 < percentage < 20 and status == "discharging":
-		subprocess.Popen(['notify-send', '-t', '3000', '-i', 'notification-battery-low', "Alerta de Bateria", 'Ta na hora de carregar...'])
+		subprocess.Popen(['notify-send', '-t', '3000', '-i', 'notification-battery-low', "Alerta de Bateria", 'Ta na hora de carregar... ' + percentage + '%'])
 	elif percentage <= 5 and status == "discharging":
 		subprocess.Popen(['notify-send', '-t', '3000', '-i', 'notification-battery-low', "BATERIA CRITICA!", 'Plugue na tomada imediatamente!'])	
 		subprocess.Popen(['espeak', '-v', 'pt', "SOCORRO VOU MORRER"])		
@@ -45,7 +45,6 @@ def get_ssid():
 
 
 if __name__ == "__main__":
-	#ifconfig wlp2s0 | grep -w inet | awk '{print $2}'	
 
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--battery', action='store_true')
