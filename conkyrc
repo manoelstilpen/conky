@@ -32,9 +32,9 @@ ${font AvantGardeLTMedium:bold:size=10}${color Tan1}System ${color slate grey}${
 ${color}CPU Usage:    ${voffset 0}${cpu cpu}%   ${cpubar}
 ${color}RAM Usage:    ${voffset 0}${memperc}%   ${membar}
 ${font AvantGardeLTMedium:bold:size=10}${color Tan1}Internet ${color slate grey}${hr 2}${font}
-${color}SSID:         ${execpi 60 python ~/.conky-scripts/scripts.py --ssid}
+${color}SSID:         ${execpi 10 python ~/.conky-scripts/scripts.py --ssid}
 ${color}Ip address:   ${addr wlp2s0}
 ${color}Download:     ${downspeed wlp2s0}
 ${font AvantGardeLTMedium:bold:size=10}${color Tan1}Battery ${color slate grey}${hr 2}${font}
-${color}Status:       ${execpi 60 python3 ~/.conky-scripts/scripts.py --battery_status}
-${color}${execpi 300 python3 ~/.conky-scripts/scripts.py --battery}
+${color}Status:       ${execpi 5 python3 ~/.conky-scripts/scripts.py --battery_status}
+${color}${execpi 5 python3 ~/.conky-scripts/scripts.py --battery}
