@@ -5,8 +5,8 @@ use_xft yes
 xftfont Terminus:size=8
 xftalpha 0.8
 
-# update every 10 seconds
-update_interval 5
+# update every 3 seconds
+update_interval 3
 
 # eliminates flicker
 double_buffer yes
@@ -22,19 +22,27 @@ own_window_type normal
 own_window_class conky-semi
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 
+# defines minimun size
+minimum_size 280
+
 # run in background
 background yes
 
 alignment top_right
 
+template1 ${exec cat /sys/class/backlight/intel_backlight/brightness}
+template2 ${exec amixer -D pulse sget Master | awk -F"[][]" '/%/ { print substr($2, 0, 2); exit} '}
+
 TEXT
 ${font AvantGardeLTMedium:bold:size=10}${color Tan1}System ${color slate grey}${hr 2}${font}
 ${color}CPU Usage:    ${voffset 0}${cpu cpu}%   ${cpubar}
 ${color}RAM Usage:    ${voffset 0}${memperc}%   ${membar}
+${color}Volume:       ${voffset 0}${template2}%   ${execbar amixer -D pulse sget Master | awk -F"[][]" '/%/ { print $2;exit }'}
+${color}Brightness:   ${voffset 0}${template1}%   ${execbar cat /sys/class/backlight/intel_backlight/brightness}
 ${font AvantGardeLTMedium:bold:size=10}${color Tan1}Internet ${color slate grey}${hr 2}${font}
 ${color}SSID:         ${execpi 10 python ~/.conky-scripts/scripts.py --ssid}
 ${color}Ip address:   ${addr wlp2s0}
 ${color}Download:     ${downspeed wlp2s0}
 ${font AvantGardeLTMedium:bold:size=10}${color Tan1}Battery ${color slate grey}${hr 2}${font}
-${color}Status:       ${execpi 5 python3 ~/.conky-scripts/scripts.py --battery_status}
-${color}${execpi 5 python3 ~/.conky-scripts/scripts.py --battery}
+${color}Status:       ${battery BAT1}
+${color}${battery_bar BAT1 30,0}
