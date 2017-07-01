@@ -45,4 +45,4 @@ ${color}Ip address:   ${addr wlp2s0}
 ${color}Download:     ${downspeed wlp2s0}
 ${font AvantGardeLTMedium:bold:size=10}${color Tan1}Battery ${color slate grey}${hr 2}${font}
 ${color}Status:       ${battery BAT1}
-${color}${battery_bar BAT1 30,0}
+${color}${execbar python ~/.conky-scripts/scripts.py --battery}

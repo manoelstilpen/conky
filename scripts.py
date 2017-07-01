@@ -30,7 +30,7 @@ def get_battery():
 	block = int(round((progress_size/100)*percentage))
 	text = "[{0}] {1}%".format( "|"*block + " "*(progress_size-block), percentage)
 
-	print(text)
+	print(percentage)
 
 def get_battery_status():
 	fd = open('/sys/class/power_supply/BAT1/status')
