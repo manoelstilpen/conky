@@ -21,9 +21,9 @@ def get_battery():
 	# print(percentage)
 	status = status.replace('\n', '')
 	if 5 < percentage < 20 and status == "discharging":
-		subprocess.Popen(['notify-send', '-t', '3000', '-i', 'notification-battery-low', "Alerta de Bateria", 'Ta na hora de carregar... ' + str(percentage) + '%'])
+		subprocess.Popen(['notify-send', '-i', 'notification-battery-low', "Alerta de Bateria", 'Ta na hora de carregar... ' + str(percentage) + '%'])
 	elif percentage <= 5 and status == "discharging":
-		subprocess.Popen(['notify-send', '-t', '3000', '-i', 'notification-battery-low', "BATERIA CRITICA!", 'Plugue na tomada imediatamente!'])	
+		subprocess.Popen(['notify-send', '-i', 'notification-battery-low', "BATERIA CRITICA!", 'Plugue na tomada imediatamente!'])	
 		subprocess.Popen(['espeak', '-v', 'pt', "SOCORRO VOU MORRER"])		
 
 	progress_size = 50
